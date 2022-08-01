@@ -34,11 +34,15 @@ app.post("/add", (req, res) => {
 
   const newItem = new Item({ task });
 
-  newUser
+  newItem
     .save()
     .then(() => res.json("Item added!"))
     .catch((err) => res.status(400).json("Error: " + err));
 });
+
+app.post('/delete',(req,res)=>{
+  
+})
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
