@@ -17,6 +17,29 @@ connection.once("open", () => {
   console.log("MongoDB Database has connected succesfully");
 });
 
+const itemsSchema = {
+  item: String,
+};
+
+const Item = mongoose.model("Item", itemsSchema);
+
+app.get("/", (req, res) => {
+  Item.find()
+    .then((items) => res.json(items))
+    .catch((err) => res.status(400).json("Error:" + err));
+});
+
+app.post("/add", (req, res) => {
+  const task = req.body.task;
+
+  const newItem = new Item({ task });
+
+  newUser
+    .save()
+    .then(() => res.json("Item added!"))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
