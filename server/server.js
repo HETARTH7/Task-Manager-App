@@ -18,7 +18,7 @@ connection.once("open", () => {
 });
 
 const itemsSchema = {
-  item: String,
+  inputText: String,
 };
 
 const Item = mongoose.model("Item", itemsSchema);
@@ -30,9 +30,9 @@ app.get("/", (req, res) => {
 });
 
 app.post("/add", (req, res) => {
-  const task = req.body.task;
+  const inputText = req.body.inputText;
 
-  const newItem = new Item({ task });
+  const newItem = new Item({ inputText });
 
   newItem
     .save()

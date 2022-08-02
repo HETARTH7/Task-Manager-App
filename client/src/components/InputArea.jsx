@@ -10,12 +10,12 @@ function InputArea(props) {
   }
   const onSubmit = (e) => {
     e.preventDefault();
-    const task = {
+    const item = {
       inputText: inputText,
     };
-    console.log(task);
+    console.log(item);
     axios
-      .post("http://localhost:5000/add", task)
+      .post("http://localhost:5000/add", item)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
     setInputText("");
@@ -24,10 +24,12 @@ function InputArea(props) {
 
   return (
     <div className="form">
-      <input onChange={handleChange} type="text" value={inputText} />
-      <button onClick={onSubmit}>
-        <span>Add</span>
-      </button>
+      <form action="/" method="post">
+        <input onChange={handleChange} type="text" name={inputText} />
+        <button type="submit" onClick={onSubmit}>
+          <span>Add</span>
+        </button>
+      </form>
     </div>
   );
 }
