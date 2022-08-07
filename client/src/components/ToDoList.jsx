@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import ToDoItem from "./ToDoItem";
 import InputArea from "./InputArea";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import axios from "axios";
 
 const ToDoList = () => {
-  const [x, setX] = useState([]);
-  const xList = () => {
-    return x.map((y,index) => {
+  const [listItem, setListItem] = useState([]);
+  const viewList = () => {
+    return listItem.map((y, index) => {
       return <ToDoItem key={index} item={y} />;
     });
   };
@@ -15,7 +15,7 @@ const ToDoList = () => {
     axios
       .get("http://localhost:5000/")
       .then((res) => {
-        setX(res.data);
+        setListItem(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -26,7 +26,7 @@ const ToDoList = () => {
         <h1>To-Do List</h1>
       </div>
       <InputArea />
-      <div>{xList()}</div>
+      <div>{viewList()}</div>
     </div>
   );
 };
