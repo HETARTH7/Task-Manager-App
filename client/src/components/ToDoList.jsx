@@ -1,45 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ToDoItem from "./ToDoItem";
 import InputArea from "./InputArea";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
 
-function ToDoList() {
-  const [items, setItems] = useState([]);
-
-  function addItem(inputText) {
-    setItems((prevItems) => {
-      return [...prevItems, inputText];
+const ToDoList = () => {
+  const [x, setX] = useState([]);
+  const xList = () => {
+    return x.map((y,index) => {
+      return <ToDoItem key={index} item={y} />;
     });
-  }
-
-  function deleteItem(id) {
-    setItems((prevItems) => {
-      return prevItems.filter((item, index) => {
-        return index !== id;
-      });
-    });
-  }
+  };
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/")
+      .then((res) => {
+        setX(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="container">
       <div className="heading">
         <h1>To-Do List</h1>
       </div>
-      <InputArea onAdd={addItem} />
-      <div>
-        <ul>
-          {items.map((todoItem, index) => (
-            <ToDoItem
-              key={index}
-              id={index}
-              text={todoItem}
-              onChecked={deleteItem}
-            />
-          ))}
-        </ul>
-      </div>
+      <InputArea />
+      <div>{xList()}</div>
     </div>
   );
-}
+};
 
 export default ToDoList;
