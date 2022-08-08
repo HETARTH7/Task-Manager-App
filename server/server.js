@@ -40,16 +40,10 @@ app.post("/add", (req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-app.post("/delete", (req, res) => {
-  const checkedItemId = req.body.checkbox;
-  Item.findByIdAndRemove({ _id: checkedItemId }, (err) => {
-    if (!err) {
-      console.log("Successfully deleted checked item.");
-      res.redirect("/");
-    }
-  });
+app.delete("/delete", (req, res) => {
+  const deleteItem = req.body.id;
+  console.log(deleteItem);
 });
-
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });

@@ -6,9 +6,14 @@ import axios from "axios";
 
 const ToDoList = () => {
   const [listItem, setListItem] = useState([]);
+
+  const deleteItem = () => {
+    console.log("deleted");
+  };
+
   const viewList = () => {
     return listItem.map((y, index) => {
-      return <ToDoItem key={index} item={y} />;
+      return <ToDoItem deleteItem={deleteItem} key={index} item={y} />;
     });
   };
   useEffect(() => {
