@@ -40,10 +40,7 @@ app.post("/add", (req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-app.delete("/delete", (req, res) => {
-  const deleteItem = req.body.id;
-  console.log(deleteItem);
-});
+
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });

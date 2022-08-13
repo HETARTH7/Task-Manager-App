@@ -1,15 +1,11 @@
 import React from "react";
 
 function ToDoItem(props) {
-  return (
-    <li
-      onClick={() => {
-        props.deleteItem(props.id);
-      }}
-    >
-      {props.item.inputText}
-    </li>
-  );
+  
+  const deleteItem = () => {
+    console.log(props.item._id);
+  };
+  return <li onClick={deleteItem}>{props.item.inputText}</li>;
 }
 
 export default ToDoItem;

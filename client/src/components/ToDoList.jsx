@@ -4,16 +4,12 @@ import InputArea from "./InputArea";
 
 import axios from "axios";
 
-const ToDoList = () => {
+const ToDoList = (props) => {
   const [listItem, setListItem] = useState([]);
-
-  const deleteItem = () => {
-    console.log("deleted");
-  };
-
+  
   const viewList = () => {
     return listItem.map((y, index) => {
-      return <ToDoItem deleteItem={deleteItem} key={index} item={y} />;
+      return <ToDoItem key={index} item={y} />;
     });
   };
   useEffect(() => {
