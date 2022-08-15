@@ -1,5 +1,4 @@
 const express = require("express");
-const router = require("express").Router();
 const cors = require("cors");
 const mongoose = require("mongoose");
 
@@ -43,7 +42,6 @@ app.post("/add", (req, res) => {
 
 app.post("/delete/:id", (req, res) => {
   const id = req.params.id;
-  console.log(id);
   Item.findByIdAndDelete(id)
     .then(() => res.json("Item deleted."))
     .catch((err) => res.status(400).json("Error: " + err));

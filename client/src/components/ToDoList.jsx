@@ -9,12 +9,11 @@ const ToDoList = (props) => {
   function ToDoItem(props) {
     const deleteItem = () => {
       const id = props.item._id;
-      console.log(id);
       axios
         .post(`http://localhost:5000/delete/${id}`)
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
-      setListItem(listItem.filter((exercise) => exercise._id !== id));
+      setListItem(listItem.filter((to) => to._id !== id));
     };
     return <li onClick={deleteItem}>{props.item.inputText}</li>;
   }
