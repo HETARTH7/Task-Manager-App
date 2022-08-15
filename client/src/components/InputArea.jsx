@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function InputArea(props) {
+function InputArea() {
   const [inputText, setInputText] = useState("");
 
   function handleChange(event) {
